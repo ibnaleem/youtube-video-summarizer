@@ -1,5 +1,5 @@
 # Youtube Video Summarizer
-This is a YouTube Video Summarizer tool that utilizes the power of OpenAI's Whisper API and PyTube library to download YouTube videos, transcribe them, and generate summaries using the GPT-3.5 language model.
+This is a tool that utilizes the power of OpenAI's Whisper API and PyTube library to download YouTube videos, transcribe them, and generate summaries using the GPT-3.5 language model.
 
 # Dependencies
 To run this application, you need the following dependencies installed:
