@@ -18,8 +18,10 @@ To run this application, you need the following dependencies installed:
 ```bash
 $ git clone https://github.com/ibnaleem/youtube-video-summarizer.git
 ```
-2. Install the required dependencies. Make sure you have the [latest version of Python](https://www.python.org/downloads/) and pip installed. Run the following command:
+2. Install the required dependencies. Make sure you have the [latest version of Python](https://www.python.org/downloads/) and pip installed. Run the following commands:
+
 ```bash
+$ cd /cmd
 $ pip install -r requirements.txt
 ```
 3. Set up your OpenAI API credentials. You will need to create an account on OpenAI's platform and obtain an API key. Then, set the `API_KEY` variable in `config.json` with your API key.
@@ -32,7 +34,7 @@ $ pip install -r requirements.txt
 ```cmd
 Enter YouTube URL:
 ```
-5. Check your local directory for a `.txt` file.
+5. Check your `/cmd` directory for a `.txt` file.
 
 # Configuration
 You can modify some aspects of the summarization process by adjusting the following parameters in the script:
