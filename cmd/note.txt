@@ -1,0 +1,42 @@
+**Video Title and URL**:
+- Title of the YouTube video: {yt.title}
+- Video URL: {url}
+
+**Introduction**:
+- [Your summary of the video's introduction, if any]
+
+**Main Content**:
+- [Divide your notes into sections corresponding to the main topics or sections of the video transcription. Use headings or bullet points to organize information within each section. Include key points, facts, statistics, and examples discussed by the creator.]
+
+**Quotes**:
+- [Include any impactful quotes or phrases found in the transcription, using quotation marks.]
+
+**Visual Aids**:
+- [Note any references to charts, diagrams, or visual aids in the transcription. Describe what they represent and their significance.]
+
+**Key Takeaways**:
+- [After each section or topic, summarize the most important information in a few sentences. Highlight key takeaways.]
+
+**Personal Insights and Questions**:
+- [Jot down your personal thoughts, questions, or insights that arise as you read the transcription.]
+
+**References and Sources**:
+- [If the creator references books, articles, or other videos in the transcription, note them for future reference.]
+
+**Conclusion**:
+- [Summarize the main points made in the conclusion of the video transcription.]
+
+**Next Steps**:
+- [Outline any actions you intend to take as a result of reading the transcription. This could include further research, trying out new techniques, or sharing the video transcription with others.]
+
+**Rating or Review**:
+- [Provide a brief review or rating of the video based on the transcription, indicating its quality, relevance, and any criticisms or praises.]
+
+**Final Thoughts**:
+- [Use this section to summarize your overall thoughts on the video based on the transcription and its impact on your understanding or perspective.]
+
+**Keywords and Tags**:
+- [List relevant keywords and tags that can help you find the video transcription in the future.]
+
+Video Transcription to use: {new_t}
+

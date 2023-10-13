@@ -9,12 +9,12 @@ with open("config.json", "r") as f:
 
 openai.api_key = config["API_KEY"]
 
-url = input("Enter YouTube URL: ")
 
-def download_video(url:str) -> str:
+def download_video(url: str) -> str:
     if url.startswith("https://www.youtube.com/"):
 
         try:
+            global yt
             yt = YouTube(url)
             stream = yt.streams.filter().first()
             out_file = stream.download()
@@ -35,10 +35,12 @@ def transcribe_video(new_file: str) -> str:
         transcript = openai.Audio.transcribe("whisper-1", audio_file)
         new_t = transcript["text"]
         return new_t
+
+
+def main(new_t: str) -> bool:
         
-        audio_file = open(new_file, "rb")
-        transcript = openai.Audio.transcribe("whisper-1", audio_file)
-        new_t = transcript["text"]
+        with open("note.txt", "r") as f:
+             format = f.read()
 
         response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
@@ -46,15 +48,23 @@ def transcribe_video(new_file: str) -> str:
                   "role":
                   "assistant",
                   "content":
-                  f"Your output should use the following template:\n**Summary**\n**Highlights**\n- [Emoji] Bulletpoint\n\nYour task is to summarise the text I have given you in up to ten concise bullet points, starting with a short highlight. Choose an appropriate emoji for each bullet point. Use the text below: {yt.title} {new_t}."
+                  f"Your output should use the following template given the provided transcription:\n{format}"
             }])
 
         with open(f'{yt.title} Summary.txt', "w", encoding="utf-8") as f:
             f.write(response['choices'][0]['message']['content'])
 
-        audio_file.close()
+        return True
+
+
+if __name__ == "__main__":
+    url = input("Enter YouTube URL: ")
+
+    new_file = download_video(url)
+    new_t = transcribe_video(new_file)
+    main(new_t)
+
+    if main() is True:
         os.remove(new_file)
-
-
-else:
-    raise ValueError("Your URL is not a YouTube URL. Provide a YouTube URL or check for typos.")
+    else:
+         raise RuntimeError("Unsuccessful, aborting...")
