@@ -28,6 +28,14 @@ def download_video(url:str) -> str:
         except pytube.exceptions.VideoUnavailable:
             raise ValueError("The YouTube video has been deleted, made private, or does not exist.")
 
+        
+def transcribe_video(new_file: str) -> str:
+        
+        audio_file = open(new_file, "rb")
+        transcript = openai.Audio.transcribe("whisper-1", audio_file)
+        new_t = transcript["text"]
+        return new_t
+        
         audio_file = open(new_file, "rb")
         transcript = openai.Audio.transcribe("whisper-1", audio_file)
         new_t = transcript["text"]
