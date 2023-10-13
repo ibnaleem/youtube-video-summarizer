@@ -3,6 +3,7 @@ import pytube
 from pytube import YouTube
 from pytube.exceptions import VideoUnavailable
 
+
 with open("config.json", "r") as f:
     config = json.load(f)
 
@@ -10,16 +11,22 @@ openai.api_key = config["API_KEY"]
 
 url = input("Enter YouTube URL: ")
 
-if url.startswith("https://www.youtube.com/"):
+def download_video(url:str) -> str:
+    if url.startswith("https://www.youtube.com/"):
 
-    try:
-        yt = YouTube(url)
-        stream = yt.streams.filter().first()
-        out_file = stream.download()
+        try:
+            yt = YouTube(url)
+            stream = yt.streams.filter().first()
+            out_file = stream.download()
 
-        base, ext = os.path.splitext(out_file)
-        new_file = base + '.mp3'
-        os.rename(out_file, new_file)
+            base, ext = os.path.splitext(out_file)
+            new_file = base + '.mp3'
+            os.rename(out_file, new_file)
+
+            return new_file
+        
+        except pytube.exceptions.VideoUnavailable:
+            raise ValueError("The YouTube video has been deleted, made private, or does not exist.")
 
         audio_file = open(new_file, "rb")
         transcript = openai.Audio.transcribe("whisper-1", audio_file)
@@ -40,8 +47,6 @@ if url.startswith("https://www.youtube.com/"):
         audio_file.close()
         os.remove(new_file)
 
-    except pytube.exceptions.VideoUnavailable:
-        raise ValueError("The YouTube video has been deleted, made private, or does not exist.")
 
 else:
     raise ValueError("Your URL is not a YouTube URL. Provide a YouTube URL or check for typos.")
